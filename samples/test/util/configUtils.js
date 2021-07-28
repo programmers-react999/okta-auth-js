@@ -67,6 +67,9 @@ function getConfig() {
     oktaAPIKey,
   };
 
+  console.log('______ config')
+  console.log( JSON.stringify(config) )
+
   return Object.assign({}, config);
 }
 
