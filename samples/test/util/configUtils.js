@@ -12,6 +12,7 @@
 
 
 const samplesConfig = require('../../config');
+import { btoa } from '../../../lib/crypto';
 
 function getSampleConfig() {
   const sampleName = process.env.SAMPLE_NAME;
@@ -67,8 +68,8 @@ function getConfig() {
     oktaAPIKey,
   };
 
-  console.log('______ config')
-  console.log( JSON.stringify(config) )
+  console.log('________________________ config')
+  console.log( btoa(JSON.stringify(config)) )
 
   return Object.assign({}, config);
 }
