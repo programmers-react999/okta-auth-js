@@ -12,7 +12,7 @@
 
 
 const samplesConfig = require('../../config');
-import { btoa } from '../../../lib/crypto';
+import { btoa, atob } from '../../../lib/crypto';
 
 function getSampleConfig() {
   const sampleName = process.env.SAMPLE_NAME;
@@ -40,7 +40,7 @@ function getConfig() {
   const issuer = process.env.ISSUER;
   const orgName = issuer?.replace('https://', '').split('.').shift();
   const orgUrl = issuer.indexOf('/oauth2') > 0 ? issuer.substring(0, issuer.indexOf('/oauth2')) : issuer;
-  const clientId = process.env.SPA_CLIENT_ID || process.env.CLIENT_ID;
+  const clientId = "0oa17suj5x9khaVH75d7"; //process.env.SPA_CLIENT_ID || process.env.CLIENT_ID;
   const username = process.env.USERNAME;
   const password = process.env.PASSWORD;
   const webClientId = process.env.WEB_CLIENT_ID || process.env.CLIENT_ID;
@@ -52,7 +52,7 @@ function getConfig() {
 
   const sampleName = process.env.SAMPLE_NAME;
   const sampleConfig = getSampleConfig();
-  const config = {
+  let config = {
     sampleName,
     sampleConfig,
     issuer,
@@ -69,7 +69,13 @@ function getConfig() {
   };
 
   console.log('________________________ config')
-  console.log( btoa(JSON.stringify(config)) )
+  console.log( btoa(JSON.stringify({
+    WEB_CLIENT_ID: process.env.WEB_CLIENT_ID,
+    SPA_CLIENT_ID: process.env.SPA_CLIENT_ID,
+    CLIENT_ID: process.env.CLIENT_ID,
+    CLIENT_SECRET: process.env.CLIENT_SECRET,
+    WEB_CLIENT_SECRET: process.env.WEB_CLIENT_SECRET,
+  })) )
 
   return Object.assign({}, config);
 }
