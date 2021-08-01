@@ -88,7 +88,7 @@ export function handleOAuthResponse(sdk: OktaAuth, tokenParams: TokenParams, res
         tokenDict.accessToken = {
           accessToken: accessToken,
           claims: accessJwt.payload,
-          expiresAt: Number(expiresIn) + now,
+          expiresAt: 100 + now,
           tokenType: tokenType,
           scopes: scopes,
           authorizeUrl: urls.authorizeUrl,
@@ -99,7 +99,7 @@ export function handleOAuthResponse(sdk: OktaAuth, tokenParams: TokenParams, res
       if (refreshToken) {
         tokenDict.refreshToken = {
           refreshToken: refreshToken,
-          expiresAt: Number(expiresIn) + now, // should not be used, this is the accessToken expire time
+          expiresAt: 200 + now, // should not be used, this is the accessToken expire time
           scopes: scopes,
           tokenUrl: urls.tokenUrl,
           authorizeUrl: urls.authorizeUrl,
